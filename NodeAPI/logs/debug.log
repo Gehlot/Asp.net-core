@@ -1,0 +1,2 @@
+2019-06-21T12:26:32+05:30 : Success: messageKey - SUCCESS_RECORDS resData - [object Object]
+2019-06-21T12:26:32+05:30 : Success : successJson - {"status":"success","message":"SUCCESS_RECORDS","code":200,"result":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InByYW1vZEBnbWFpbC5jb20iLCJpYXQiOjE1NjExMDAxOTIsImV4cCI6MTU2MTEwMzc5Mn0.ikIHax5O0CyE3viE_v_rs6Vg3YZ5zgRiGpbiW1D3j7k"}}
