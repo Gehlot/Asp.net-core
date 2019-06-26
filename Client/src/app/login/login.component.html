@@ -1,0 +1,39 @@
+<!-- main app container -->
+<div class="jumbotron">
+  
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 offset-md-3">
+        <h2>Login</h2>
+        <div class="col-md-12  alert alert-danger alert-dismissible" data-auto-dismiss="2000" *ngIf=passwordAlert>
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Oops!</strong> Username and password do not match
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="Email">Email<span class="astrik">*</span></label>
+            <input type="text" formControlName="email" class="form-control" maxlength="50"
+               />
+              <div *ngIf="submitted && f.email.errors" >
+                  <div *ngIf="f.email.errors.required" class="text-danger">Email is required</div>
+                  <div *ngIf="f.email.errors.email" class="text-danger">Email must be a valid email address</div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password<span class="astrik">*</span></label>
+            <input type="password" formControlName="password" class="form-control" maxlength="10"
+               />
+              <div *ngIf="submitted && f.password.errors" >
+                <div *ngIf="f.password.errors.required" class="text-danger">Password is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary">Login</button>
+          
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

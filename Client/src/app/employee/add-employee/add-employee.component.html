@@ -1,0 +1,42 @@
+<div class="alert-box">
+  <div class="modal-header">
+    <h4 class="modal-title">Add Employee</h4>
+    <button type="button" class="close" aria-label="Close" (click)="hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <div class="modal-body">
+     <div class="col-md-12  alert alert-danger alert-dismissible" data-auto-dismiss="2000" *ngIf=errorAlert>
+       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+       <strong>Oops! {{errorMessage}}</strong>
+     </div>
+    <div class="form-group">
+      <label for="name">Name<span class="astrik">*</span></label>
+      <input type="text" formControlName="name" class="form-control" maxlength="50" />
+      <div *ngIf="submitted && f.name.errors">
+        <div *ngIf="f.name.errors.required" class="text-danger">Name is required</div>
+      </div>
+    </div>
+       <div class="form-group">
+         <label for="Email">Email<span class="astrik">*</span></label>
+         <input type="text" formControlName="email" class="form-control" maxlength="50" />
+         <div *ngIf="submitted && f.email.errors">
+           <div *ngIf="f.email.errors.required" class="text-danger">Email is required</div>
+           <div *ngIf="f.email.errors.email" class="text-danger">Email must be a valid email address</div>
+         </div>
+       </div>
+       <div class="form-group">
+         <label for="password">Password<span class="astrik">*</span></label>
+         <input type="password" formControlName="password" class="form-control" maxlength="10" />
+         <div *ngIf="submitted && f.password.errors">
+           <div *ngIf="f.password.errors.required" class="text-danger">Password is required</div>
+         </div>
+       </div>
+    
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary">Submit</button>
+  </div>
+   </form>
+</div>

@@ -1,0 +1,40 @@
+<div class="ineerBody col-md-12">
+  <strong> Employee list</strong>
+  <hr size="30">
+  <div class="alert alert-success" *ngIf=alert>
+   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+   <strong>Success! {{message}}</strong>
+  </div>
+  <div class="">
+    <button type="button" class="btn btn-info" (click)="openConfirmDialog()">Add Employee</button>
+  </div>
+  <div style="margin-top: 10px;margin-bottom: 50px;">
+    <table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger">
+      <thead>
+        <tr>
+         
+          <th>Name</th>
+          <th>Email</th>
+           <th>Is Active</th>
+            <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let group of employeeData">
+       
+          <td>{{group.name}}</td>
+          <td>{{group.email}}</td>
+          <td>{{group.status}}</td>
+          <td><i class="fa fa-fw fa-edit" (click)="EditEmployee(group.id)"></i> |
+            <i class="fa fa-fw fa-remove"></i></td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="employeeData?.length == 0">
+        <tr>
+          <td colspan="5" class="no-data-available">No matching records found</td>
+        </tr>
+      <tbody>
+    </table>
+  </div>
+</div>
