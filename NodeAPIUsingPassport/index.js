@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 var mssql = require('mssql');
 var jwt = require('jsonwebtoken');
-const { User, Blog, Tag } = require('./sequelize')
+const { User, Blog, Tag ,sequelize} = require('./sequelize')
 var config = require('./config'); // get our config file
 
 const app = express()
@@ -14,6 +14,7 @@ app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: true }));
 let ExtractJwt = passportJWT.ExtractJwt;
 let JwtStrategy = passportJWT.Strategy;
+value="";
 
 let jwtOptions = {};
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
@@ -48,9 +49,12 @@ app.post('/api/users', (req, res) => {
 })
 
 // get all users
-app.get('/api/users',passport.authenticate('jwt', { session: false }), (req, res,next) => {
-    User.findAll().then(users => res.json(users))
-})
+app.get('/api/users',async (req, res) => {
+    // User.findAll().then(users => res.json(users))
+  var data =  await sequelize.query('exec getdata :param', {replacements: {param:[req.body.name,'Indore']},type:sequelize.QueryTypes.SELECT});
+  console.log(data.length);
+  res.json(data);
+});
 
  // PATCH single User
  app.post('/api/users/:id',passport.authenticate('jwt', { session: false }), (req, res,next) => {
@@ -178,7 +182,6 @@ apiRoutes.use(function(req, res, next) {
           success: false, 
           message: 'No token provided.' 
       });
-  
     }
   });
 
@@ -189,7 +192,7 @@ app.get('/protected', passport.authenticate('jwt', { session: false }), function
 
 app.post('/UserReg',passport.authenticate('jwt',{session:false}),
 (req,res)=>{
-    console.log("bvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbvbv")
+    console.log("gjhfjghjhvvbc")
     User.create(req.body)
         .then(user => res.json(user))
 })
